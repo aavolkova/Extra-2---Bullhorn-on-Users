@@ -147,7 +147,7 @@ public class HomeController {
                           @RequestParam("file")MultipartFile file, Principal principal, Model model)
     {
         User myUser = userRepository.findByUsername(principal.getName());
-        model.addAttribute("user", myUser );
+//        model.addAttribute("user", myUser );
 //        model.addAttribute("user", myUser );
 
         String username = myUser.getUsername();
@@ -157,11 +157,14 @@ public class HomeController {
 
 
 //        if (result.hasErrors()  || file.isEmpty()){
+//
 //            return "messageform";
 //        }
-//        if(file.isEmpty()){
-//            return "redirect:/add";
-//        }
+
+        
+        if(file.isEmpty()){
+            return "redirect:/add";
+        }
 
         try{
             Map uploadResult = cloudc.upload(file.getBytes(),
