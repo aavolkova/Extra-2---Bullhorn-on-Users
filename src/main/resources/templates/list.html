@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base :: headstuff"></head>
+
+<body>
+
+<nav th:replace="base :: navbar"></nav>
+<div class="container">
+    <div class="jumbotron">
+
+        <h1>List of all messages:</h1>
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<th>Content</th>-->
+                <!--<th>Post ED Date</th>-->
+                <!--<th>Sent By</th>-->
+                <!--<th>Actions</th>-->
+            <!--</tr>-->
+            <!--<tr th:each="m : ${messages}">-->
+                <!--<td th:text="${m.content}"></td>-->
+                <!--<td th:text="${m.posteddate}"></td>-->
+                <!--<td th:text="${m.sentby}"></td>-->
+                <!--<td>-->
+                    <!--<a th:href="@{/detail/{id}(id=${m.id})}">Details</a><br />-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</table>-->
+
+        <div th:each="m : ${messages}">
+            <h2 th:text="${m.content}">Message</h2>
+            <div th:if="${m.image} != null">
+                <img th:src="${m.image}" />
+                <hr />
+            </div>
+            <h4 th:text="${m.sentby}">from</h4><br />
+            <a th:href="@{/detail/{id}(id=${m.id})}">Details</a><br />
+        </div>
+
+
+
+        <br /><a href="/">List of All Messages</a><br />
+        <br /><a href="/add">Add a new Message</a><br />
+
+
+    </div>
+</div>
+
+<nav th:replace="base :: footer"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
+
+</body>
+</html>
